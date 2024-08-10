@@ -1,95 +1,76 @@
 local ScreenGui = Instance.new("ScreenGui")
-local Frame = Instance.new("Frame")
-local TextLabel = Instance.new("TextLabel")
-local TextButton = Instance.new("TextButton")
-local UICornerFrame = Instance.new("UICorner")
+local MainFrame = Instance.new("Frame")
+local TitleLabel = Instance.new("TextLabel")
+local DupeButton = Instance.new("TextButton")
+local UICornerMainFrame = Instance.new("UICorner")
 local UICornerButton = Instance.new("UICorner")
 
 -- Parent the GUI to the player's screen
 ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 
 -- Set up the main frame
-Frame.Parent = ScreenGui
-Frame.BackgroundColor3 = Color3.fromRGB(50, 50, 50)  -- Dark gray background
-Frame.Position = UDim2.new(0.3, 0, 0.3, 0)
-Frame.Size = UDim2.new(0.4, 0, 0.4, 0)
-Frame.Active = true
-Frame.Draggable = true  -- Makes the frame draggable
+MainFrame.Parent = ScreenGui
+MainFrame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+MainFrame.Position = UDim2.new(0.3, 0, 0.3, 0)
+MainFrame.Size = UDim2.new(0.4, 0, 0.4, 0)
+MainFrame.Active = true
+MainFrame.Draggable = true  -- Makes the frame draggable
 
--- Add rounded corners to the frame
-UICornerFrame.Parent = Frame
-UICornerFrame.CornerRadius = UDim.new(0, 10)
+-- Add rounded corners to the main frame
+UICornerMainFrame.Parent = MainFrame
+UICornerMainFrame.CornerRadius = UDim.new(0, 15)
 
--- Set up the label with rainbow effect
-TextLabel.Parent = Frame
-TextLabel.Text = "MM2 Duping"
-TextLabel.TextColor3 = Color3.new(1, 1, 1)  -- White text
-TextLabel.BackgroundTransparency = 1
-TextLabel.Size = UDim2.new(1, 0, 0.2, 0)
-TextLabel.Position = UDim2.new(0, 0, 0, 0)
-TextLabel.Font = Enum.Font.SourceSansBold
-TextLabel.TextScaled = true
+-- Set up the title label
+TitleLabel.Parent = MainFrame
+TitleLabel.Text = "MM2 Dupe"
+TitleLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+TitleLabel.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+TitleLabel.Size = UDim2.new(1, 0, 0.2, 0)
+TitleLabel.Position = UDim2.new(0, 0, 0, 0)
+TitleLabel.TextScaled = true
+TitleLabel.Font = Enum.Font.GothamBold
 
--- Create a rainbow effect for the label text
-local function updateRainbowTextColor()
-    local colors = {
-        Color3.fromRGB(255, 0, 0),   -- Red
-        Color3.fromRGB(255, 165, 0), -- Orange
-        Color3.fromRGB(255, 255, 0), -- Yellow
-        Color3.fromRGB(0, 255, 0),   -- Green
-        Color3.fromRGB(0, 0, 255),   -- Blue
-        Color3.fromRGB(75, 0, 130),   -- Indigo
-        Color3.fromRGB(148, 0, 211)   -- Violet
-    }
-    local tweenService = game:GetService("TweenService")
-    local tweenInfo = TweenInfo.new(0.5, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut, -1, true)
-    
-    for i, color in ipairs(colors) do
-        local tween = tweenService:Create(TextLabel, tweenInfo, {TextColor3 = color})
-        tween:Play()
-        wait(0.5)
-    end
-end
-
-updateRainbowTextColor()
-
--- Set up the button
-TextButton.Parent = Frame
-TextButton.Text = "Dupe"
-TextButton.TextColor3 = Color3.new(1, 1, 1)
-TextButton.BackgroundColor3 = Color3.fromRGB(50, 50, 50)  -- Dark gray background
-TextButton.Size = UDim2.new(0.5, 0, 0.2, 0)
-TextButton.Position = UDim2.new(0.25, 0, 0.65, 0)
+-- Set up the dupe button
+DupeButton.Parent = MainFrame
+DupeButton.Text = "Dupe"
+DupeButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+DupeButton.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+DupeButton.Size = UDim2.new(0.5, 0, 0.3, 0)
+DupeButton.Position = UDim2.new(0.25, 0, 0.35, 0)
+DupeButton.TextScaled = true
+DupeButton.Font = Enum.Font.GothamBold
 
 -- Add rounded corners to the button
-UICornerButton.Parent = TextButton
-UICornerButton.CornerRadius = UDim.new(0, 10)
+UICornerButton.Parent = DupeButton
+UICornerButton.CornerRadius = UDim.new(0, 15)
 
--- Function to create the new "Duping..." GUI
+-- Function to create the "Duping..." GUI
 local function createDupingGui()
-    -- Unload the original GUI
+    -- Remove the current GUI
     ScreenGui:ClearAllChildren()
 
     -- Create a new frame for the duping GUI
     local DupingFrame = Instance.new("Frame")
     DupingFrame.Parent = ScreenGui
-    DupingFrame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)  -- Darker gray background
+    DupingFrame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
     DupingFrame.Position = UDim2.new(0.3, 0, 0.3, 0)
     DupingFrame.Size = UDim2.new(0.4, 0, 0.4, 0)
 
     -- Add rounded corners to the duping frame
     local UICornerDupingFrame = Instance.new("UICorner")
     UICornerDupingFrame.Parent = DupingFrame
-    UICornerDupingFrame.CornerRadius = UDim.new(0, 10)
+    UICornerDupingFrame.CornerRadius = UDim.new(0, 15)
 
     -- Add a label saying "Duping..."
     local DupingLabel = Instance.new("TextLabel")
     DupingLabel.Parent = DupingFrame
     DupingLabel.Text = "Duping..."
-    DupingLabel.TextColor3 = Color3.new(1, 1, 1)  -- White text
-    DupingLabel.BackgroundColor3 = Color3.fromRGB(50, 50, 50)  -- Dark gray background
+    DupingLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+    DupingLabel.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
     DupingLabel.Size = UDim2.new(1, 0, 0.2, 0)
     DupingLabel.Position = UDim2.new(0, 0, 0, 0)
+    DupingLabel.TextScaled = true
+    DupingLabel.Font = Enum.Font.GothamBold
 
     -- Add the loading wheel (spinner)
     local Spinner = Instance.new("ImageLabel")
@@ -101,14 +82,16 @@ local function createDupingGui()
     Spinner.ImageRectOffset = Vector2.new(0, 0)
     Spinner.ImageRectSize = Vector2.new(36, 36)
 
-    -- Add the visible countdown timer
+    -- Add the countdown timer
     local TimerLabel = Instance.new("TextLabel")
     TimerLabel.Parent = DupingFrame
     TimerLabel.Text = "Time remaining: 03:00"
-    TimerLabel.TextColor3 = Color3.new(1, 1, 1)  -- White text
-    TimerLabel.BackgroundColor3 = Color3.fromRGB(50, 50, 50)  -- Dark gray background
+    TimerLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+    TimerLabel.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
     TimerLabel.Size = UDim2.new(1, 0, 0.2, 0)
     TimerLabel.Position = UDim2.new(0, 0, 0.8, 0)
+    TimerLabel.TextScaled = true
+    TimerLabel.Font = Enum.Font.GothamBold
 
     -- Rotate the spinner to simulate loading
     local TweenService = game:GetService("TweenService")
@@ -132,6 +115,6 @@ local function createDupingGui()
 end
 
 -- Handle the button click
-TextButton.MouseButton1Click:Connect(function()
+DupeButton.MouseButton1Click:Connect(function()
     createDupingGui()
 end)
